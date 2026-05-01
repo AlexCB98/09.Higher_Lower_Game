@@ -7,7 +7,7 @@ def format_data(account):
     description = account['description']
     country = account['country']
 
-    return f'{name}, {description}, from {country}.'
+    return f'{name}, a {description}, from {country}.'
 
 def check_answer(guess, a_follower_count, b_follower_count):
     if a_follower_count > b_follower_count:
@@ -29,14 +29,14 @@ while should_continue:
     account_a = account_b
     account_b = choice(data)
 
-    if account_b == account_a:
+    while account_b == account_a:
         account_b = choice(data)
 
     print(format_data(account_a))
     print(vs)
     print(format_data(account_b))
 
-    user_guess = input('\nWho have more followers?: Type "A" or "B": ').lower()
+    user_guess = input('\nWho has more followers?: Type "A" or "B": ').lower()
 
     followers_a = account_a['follower_count']
     followers_b = account_b['follower_count']
@@ -45,7 +45,10 @@ while should_continue:
 
     if correct_answer:
         score +=1
+        print('\n' * 20)
+        print(logo)
         print(f'*** Your score is: {score}')
     else:
         should_continue = False
-print(f'Final score: {score}.')
+        
+print(f'Wrong. Final score: {score}.')

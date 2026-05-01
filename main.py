@@ -1,5 +1,6 @@
 from random import choice
 from game_data import data
+from art import vs, logo
 
 def format_data(account):
     name = account['name']
@@ -15,16 +16,24 @@ def check_answer(guess, a_follower_count, b_follower_count):
         answer = 'b'
     return guess == answer
 
-print('\nWelcome to the * Higher - Lower * game.\n')
+print(logo)
+print('Welcome to the * Higher - Lower * game.\n')
 
 should_continue = True
 score = 0
+account_b = choice(data)
+
 while should_continue:
-    account_a = choice(data)
+    print('Choose from:')
+
+    account_a = account_b
     account_b = choice(data)
 
+    if account_b == account_a:
+        account_b = choice(data)
+
     print(format_data(account_a))
-    print(' VS. ')
+    print(vs)
     print(format_data(account_b))
 
     user_guess = input('\nWho have more followers?: Type "A" or "B": ').lower()
@@ -36,6 +45,7 @@ while should_continue:
 
     if correct_answer:
         score +=1
+        print(f'*** Your score is: {score}')
     else:
         should_continue = False
 print(f'Final score: {score}.')

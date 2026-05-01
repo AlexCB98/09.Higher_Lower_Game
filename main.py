@@ -50,5 +50,5 @@ while should_continue:
         print(f'*** Your score is: {score}')
     else:
         should_continue = False
-        
+
 print(f'Wrong. Final score: {score}.')
